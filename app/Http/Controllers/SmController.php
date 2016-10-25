@@ -14,14 +14,11 @@ class SmController extends Controller
     public function index(){
 
     
-    return SM::with("trailers")->whereHas('trailers', function($q){
-                        $q->where('TestField', "satttt");
-        })->get();
+    $sms = SM::has('trailers')->with('trailers')->get();
    
+    return $sms;
 
 
-
-        return $sm;
     }
     
     public function indexJson(){

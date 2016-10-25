@@ -28,6 +28,9 @@ class Trailer extends Model
     }
 
 
+    
+
+
      /**
      *  Trailer Has Many Axles
      *  Axle Table has Foreign key : Trailer

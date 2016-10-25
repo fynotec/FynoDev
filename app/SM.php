@@ -29,12 +29,12 @@ class SM extends Model
     }
 
     public function Trailers(){
-        return $this->belongsToMany(Trailer::class, "FYNO.SM_TRAILER"  ,'SM' ,'Trailer');
+        return $this->belongsToMany(Trailer::class, "FYNO.SM_TRAILER"  ,'SM' ,'Trailer')->withPivot('CouplingDate')->wherePivot('CouplingDate','10/10/2010');
 
     }
 
     public function SmAxles(){
-        return $this->hasMany(SmAxle::class,'SM')
+        return $this->hasMany(SmAxle::class,'SM');
     }
 
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Classes extends Model
 {
     protected $table = 'FYNO.SM_CLASSES';
-    protected $primaryKey = "SmClassID" ;
+    protected $primaryKey = "SMClassID" ;
 
 
 
