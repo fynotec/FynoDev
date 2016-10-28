@@ -24,9 +24,9 @@ Route::post('/Equipement/Vehicules/create','SmController@store');
 
 // Route for Edit
 
-Route::get('/Equipement/Vehicules/edit/','SmController@edit');
+Route::get('/Equipement/Vehicules/edit/{id}','SmController@edit');
 Route::get('/Equipement/Vehicules/editJson/{id}','SmController@editJson');
-Route::patch('/Equipement/Vehicules/edit','SmController@update');
+Route::patch('/Equipement/Vehicules/edit/{id}','SmController@update');
 
 
 /*Route::get('/', function () {

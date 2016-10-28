@@ -27,7 +27,7 @@ td {
             
 
              
-            <form id= "vehicleformEdit" method="POST" action="" accept-charset="UTF-8 action="{{action('SmController@update')}}">
+            <form id= "vehicleformEdit" method="POST" action="" accept-charset="UTF-8 action="{{action('SmController@update' , ['id' => $id])}}">
             <input name="_method" type="hidden" value="PATCH">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
              <table class="col-md-12" style="border-spacing: 10px 50px;margin-bottom:20px; ">

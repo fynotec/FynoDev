@@ -83,15 +83,55 @@ class SmController extends Controller
         $sm = SM::with('Smmark.SmModels','Smclasse','SmModel','corporateStructure','smUses.locataire','maturityDates')->findOrfail($id);
          return $sm;
     }
-    public function edit(){
+    public function edit($id){
     
-            return view('SM.edit');
+        return view('SM.edit',compact('id'));
        
     }
 
-    public function update(Request $request){
+    public function update(Request $request, $id){
 
-        dd($request->input());
+        
+
+        $sm = SM::find($id);
+
+        $sm->SMCorpStruct = $request->SmCorpStruct;
+        $sm->SMClass = $request->SmClass;
+        $sm->SMMark = $request->SmMark;
+        $sm->SMModel = $request->SmModel;
+        $sm->SMIdentification = $request->SupportMediumIdentification;
+        $sm->ShortCode = $request->ICode;
+        $sm->CounterType = $request->CounterType;
+        $sm->DefaultDriver = $request->DriverID;
+        $sm->SMStatus = $request->SmStatus;
+        $sm->FuelType = $request->FuelType;
+        $sm->RefuelQuantiyAlert = $request->RefuelQuantiyAlert;
+        $sm->ParkingArea = $request->ParkingAreaLabel;
+        $sm->WorkingArea = $request->WorkingAreaLabel;
+        $sm->LineColor = $request->LineColor;
+        $sm->ServiceStartDate = $request->ServiceStartDate;
+        $sm->VehicleComment = $request->VehicleComment;
+            
+      //  $sm->save();
+        \Session::flash('SuccessSm','Your Support Medium has been updated');
+
+
+        
+        MaturityDate::where('SM', $id)->where('DateType', 1)
+            ->update(['DateValue' => $request->TechnicalVisit]);
+        MaturityDate::where('SM', $id)->where('DateType', 2)
+            ->update(['DateValue' => $request->DriveAuthorization]);
+        MaturityDate::where('SM', $id)->where('DateType', 3)
+            ->update(['DateValue' => $request->Extinguisher]);
+        MaturityDate::where('SM', $id)->where('DateType', 4)
+            ->update(['DateValue' => $request->MInsurance]);
+        MaturityDate::where('SM', $id)->where('DateType', 5)
+            ->update(['DateValue' => $request->TaquigraphControl]);
+        MaturityDate::where('SM', $id)->where('DateType', 6)
+            ->update(['DateValue' => $request->WarrantyEnd]);
+
+
+        return back();
     }
 
 
