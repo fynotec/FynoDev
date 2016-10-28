@@ -15,7 +15,7 @@ class CorporatesStructureController extends Controller
 
     public function getAllCorporateStructure(){
 
-    	$CorporateStructure = DB::table('FYNO.CORPORATE_STRUCTURE')->select('CorporateStructureID as id','CorporateStructureLabel as label','CorporateStructureParent as parentid')->get();
+    	$CorporateStructure = CorporateStructure::select('CorpStructID as id','CorpStructLabel as label','CorpStructParent as parentid')->get();
 
     	return $CorporateStructure;
 

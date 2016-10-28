@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\SMMODEL;
+
+
 class SmModelsController extends Controller
 {
 	public function getModels($id = null) 

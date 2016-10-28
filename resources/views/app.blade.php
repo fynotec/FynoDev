@@ -15,12 +15,6 @@
       <!--Import jQuery before materialize.js-->
     
 
-
-
-
-
-
-
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -86,6 +80,13 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
+                @if(Session::has('SuccessSm'))
+                    <div class="alert alert-success">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                      {{ Session::get('SuccessSm')}}
+                    </div>
+                @endif
+        
                 @yield('content')
             </div>
         </div>

@@ -5,16 +5,16 @@ $(document).ready(function($) {
             var source = {
                 datatype: "json",
                 datafields: [
-                    {name: 'ICode'},
-                    {name: 'SupportMediumIdentification'},
-                    {name: 'CorporateStructureLabel', map: 'corporate_structure>CorporateStructureLabel' },
-                    {name: 'CorporateStructureLabelLocataire',map: 'sm_uses>0>sm_uses>CorporateStructureLabel'},
-                    {name: 'Designation' , map: 'classes>SmClassLabel'},
-                    {name: 'SMMarkLabel', map: 'mark>SMMarkLabel'},
-                    {name: 'SMModelLabel', map: 'mark>s_m_models>0>SMModelLabel' },
+                    {name: 'ShortCode'},
+                    {name: 'SMIdentification'},
+                    {name: 'CorporateStructureLabel', map: 'corporate_structure>CorpStructLabel' },
+                    {name: 'CorporateStructureLabelLocataire',map: 'sm_uses>0>locataire>CorpStructLabel'},
+                    {name: 'Designation' , map: 'smclasse>SMClassLabel'},
+                    {name: 'SMMarkLabel', map: 'smmark>SMMarkLabel'},
+                    {name: 'SMModelLabel', map: 'smmark>s_m_models>0>SMModelLabel' },
                     {name: 'ServiceStartDate'},
                     {name: 'GpsOnBoard'},
-                    {name: 'SmStatus'} 
+                    {name: 'SMStatus'} 
                 ],
                 id: 'SupportMediumID',
                 url: url
@@ -24,8 +24,8 @@ $(document).ready(function($) {
                 source: source,
                 pageable: true,
                 columns: [
-                	{ text: 'Code', datafield: 'ICode' },
-                	{ text: 'IMM', datafield: 'SupportMediumIdentification' },
+                	{ text: 'Code', datafield: 'ShortCode' },
+                	{ text: 'IMM', datafield: 'SMIdentification' },
                     { text: 'Propriétaire', datafield: 'CorporateStructureLabel' },
                     { text: 'Locataire', datafield: 'CorporateStructureLabelLocataire' },
                     { text: 'Designation', datafield: 'Designation' },
@@ -33,7 +33,7 @@ $(document).ready(function($) {
                     { text: 'Modèle', datafield: 'SMModelLabel' },
                     { text: 'Mise en circulation', datafield: 'ServiceStartDate' },
                     { text: 'GPS', datafield: 'GpsOnBoard' },
-                	{ text: 'Status', datafield: 'SmStatus' }
+                	{ text: 'Status', datafield: 'SMStatus' }
                 ]
             });
 
@@ -44,9 +44,6 @@ $(document).ready(function($) {
                            
                         return false;
                 });
-
-        
-
             var wdwheight = 760;
                 $("#vehicledialog").jqxWindow({
                     title: 'Fiche véhicule / Engin',

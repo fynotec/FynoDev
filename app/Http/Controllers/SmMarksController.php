@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\Mark;
+use App\SmMark;
 
-class MarksController extends Controller
+class SmMarksController extends Controller
 {
     
    public function getAllMarks(){
-   		return Mark::with('SMModels')->get();
+   		return SmMark::with('smModels')->get();
    }
 }

@@ -4,18 +4,29 @@
 
 
 
-Route::get('/Equipement/index','SmController@index');
+Route::get('/Equipement/Vehicules/','SmController@index');
 Route::get('/Equipement/vehiculesJson','SmController@indexJson');
 
+
+
+// Routes for Vehicule Creation 
 Route::get('/Equipement/Vehicules/create','SmController@create');
 Route::get('/Equipement/Vehicules/getAllCorporateStructure','CorporatesStructureController@getAllCorporateStructure');
 Route::get('/Equipement/Vehicules/getAllClasses','SmClassesController@getAllClasses');
-Route::get('/Equipement/Vehicules/getAllMarks','MarksController@getAllMarks');
+Route::get('/Equipement/Vehicules/getAllMarks','SmMarksController@getAllMarks');
 Route::get('/Equipement/Vehicules/getModels/{id?}','SmModelsController@getModels');
 Route::get('/Equipement/Vehicules/getAllPersons','PersonsController@getPersons');
-Route::get('/Equipement/Vehicules/getAllAreaPark','DeliveryAreasController@getAreaParks');
+Route::get('/Equipement/Vehicules/getAllGeoAreas','GeoAreasController@getAllGeoAreas');
 Route::post('/Equipement/Vehicules/create','SmController@store');
 
+
+
+
+// Route for Edit
+
+Route::get('/Equipement/Vehicules/edit/','SmController@edit');
+Route::get('/Equipement/Vehicules/editJson/{id}','SmController@editJson');
+Route::patch('/Equipement/Vehicules/edit','SmController@update');
 
 
 /*Route::get('/', function () {

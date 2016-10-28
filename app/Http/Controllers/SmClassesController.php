@@ -7,16 +7,17 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 
-use App\Classes;
+use App\SmClasse;
 use DB;
+
 class SmClassesController extends Controller
 {
     
     public function getAllClasses(){
 
-    	$classes = DB::table('FYNO.SM_CLASSES')->select('SmClassID as id','SmClassLabel as label','SmClassParent as parentid')->get();;
+    	$classes = SmClasse::select('SMClassID as id','SMClassLabel as label','SMClassParent as parentid')->get();;
     	return $classes;
     	
-}
+	}
 
 }

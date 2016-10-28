@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DeliveryArea extends Model
+class GeoArea extends Model
 {
 
     protected $table = 'FYNO.GEO_AREAS';
     protected $primaryKey = "GeoAreaID" ;
 
     public function GeoAreaType(){
-    	return $this->belongsTo(GeoAreaType::class, 'GeoAreaType')
+    	return $this->belongsTo(GeoAreaType::class, 'GeoAreaType');
     }
 
     public function customer(){

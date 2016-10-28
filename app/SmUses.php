@@ -9,7 +9,7 @@ class SmUses extends Model
     protected $table = 'FYNO.SM_USES';
     protected $primaryKey = "SMUseID" ;
 
-    public function smUses(){
+    public function Locataire(){
     	return $this->belongsTo(CorporateStructure::class,'TenantCorpStruct');
     }
 }

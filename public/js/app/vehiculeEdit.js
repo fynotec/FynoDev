@@ -1,10 +1,6 @@
-$(document).ready(function($){
-      /* **************************************************************************** */
-                /******************** Script Ajout Vehicule *************************/
-        /* **************************************************************************** */
-
-
-        $("#SmCorpStructLabel").jqxInput({width: '100%', height: 22 , theme: 'bootstrap'});
+$(document).ready(function($) {
+	var model = "";
+	$("#SmCorpStructLabel").jqxInput({width: '100%', height: 22 , theme: 'bootstrap'});
 
         $("#dialogCorpStructTree").jqxWindow({
             width: 380, height: 436, resizable: false,  isModal: true, autoOpen: false, modalOpacity: 0.4,
@@ -129,7 +125,16 @@ $(document).ready(function($){
                         async: true
                         };              
                     var modelAdapter = new $.jqx.dataAdapter(modelsource);
-                    $("#SmModel").jqxComboBox({ source: modelAdapter});
+                    $("#SmModel").jqxComboBox({ source: modelAdapter  });
+                     $("#SmModel").on('bindingComplete', function (event) {
+                     		 if(model != ""){
+                    	
+                    	 $("#SmModel").val(model);
+                    	 model="";
+                    }
+                     });
+                   
+
                 });
 
 
@@ -260,16 +265,107 @@ $(document).ready(function($){
 
 
 
+   
     
 
-    $("#Insurance").jqxDateTimeInput({value : null, width: '100%', height: '25px', formatString: "dd/MM/yyyy"});
-    $("#MInsurance").jqxDateTimeInput({ value : null ,width: '100%', height: '25px', formatString: "dd/MM/yyyy"});
-    $("#TechnicalVisit").jqxDateTimeInput({value : null , width: '100%', height: '25px', formatString: "dd/MM/yyyy" });
-    $("#TaquigraphControl").jqxDateTimeInput({value : null , width: '100%', height: '25px', formatString: "dd/MM/yyyy" });
-    $("#DriveAuthorization").jqxDateTimeInput({ value : null ,width: '100%', height: '25px', formatString: "dd/MM/yyyy" });
-    $("#TaquigraphControl").jqxDateTimeInput({value : null , width: '100%', height: '25px', formatString: "dd/MM/yyyy" });
-    $("#DriveAuthorization").jqxDateTimeInput({value : null , width: '100%', height: '25px', formatString: "dd/MM/yyyy" });
-    $("#WarrantyEnd").jqxDateTimeInput({value : null , width: '100%', height: '25px', formatString: "dd/MM/yyyy" });
-    $("#extinguisher").jqxDateTimeInput({ value : null ,width: '100%', height: '25px', formatString: "dd/MM/yyyy" });
-    $("#ServiceStartDate").jqxDateTimeInput({ value : null ,width: '100%', height: '25px', formatString: "dd/MM/yyyy" });
+    
+    
+    //$("#ServiceStartDate").jqxDateTimeInput({ width: '100%', height: '25px', formatString: "dd/MM/yyyy" });
+
+
+
+
+
+
+    $.get('/Equipement/Vehicules/editJson/541', function(data, status){ 
+
+
+
+		console.log(data);
+		$('#vehicleformEdit')[0].reset();
+
+
+		$("#SmCorpStructLabel").val(data.corporate_structure.CorpStructLabel);
+		$("#SmCorpStruct").val(data.corporate_structure.CorpStructID);
+
+
+		$("#SmClassLabel").val(data.smclasse.SMClassLabel);
+		$("#SmClass").val(data.smclasse.SMClassID);
+	
+		
+
+		$("#SmModel").val(data.sm_model.SMModelID);
+			model = data.sm_model.SMModelID;
+		$("#SmMark").val(data.smmark.SMMarkID);
+
+		$("#SupportMediumIdentification").val(data.SMIdentification);
+		$("#ICode").val(data.ShortCode);
+		$("#CounterType").val(data.CounterType);
+		$("#DriverID").val(data.DefaultDriver != null ? data.DefaultDriver : 0);
+
+
+
+		$("#FuelType").val(data.FuelType);
+		$("#RefuelQuantiyAlert").val(data.RefuelQuantiyAlert);
+		$("#smStatus").val(data.SMStatus);
+
+
+		$("#ParkingAreaLabel").val(data.ParkingArea);
+		$("#WorkingAreaLabel").val(data.WorkingArea);
+
+
+		//$("#dropDownButton").jqxDropDownButton('setContent', getTextElementByColor(new $.jqx.color({ hex: myResponse[0]['LineColor'] })));
+		$("#LineColor").val(data.LineColor);
+		
+		
+
+		$("#VehicleComment").val(data.VehicleComment);
+		
+
+		var date = data.ServiceStartDate.split("-").join("/");
+
+		$("#ServiceStartDate").jqxDateTimeInput({ value: date  ,width: '100%', height: '25px', formatString: "dd/MM/yyyy" });
+		
+
+		for (var i = 0; i < data.maturity_dates.length; i++) {
+			switch(data.maturity_dates[i].DateType) {
+			    case 0:
+			        $("#Insurance").jqxDateTimeInput({  value: data.maturity_dates[i].DateValue != null ? data.maturity_dates[i].DateValue : null  ,width: '100%', height: '25px', formatString: "dd/MM/yyyy"});
+			        break;
+			    case 1:
+					$("#TechnicalVisit").jqxDateTimeInput({  value: data.maturity_dates[i].DateValue != null ? data.maturity_dates[i].DateValue : null  ,width: '100%', height: '25px', formatString: "dd/MM/yyyy"});
+					break;
+			    case 2:
+					$("#DriveAuthorization").jqxDateTimeInput({  value: data.maturity_dates[i].DateValue != null ? data.maturity_dates[i].DateValue : null  ,width: '100%', height: '25px', formatString: "dd/MM/yyyy"});
+			        break;
+			    case 3:
+					$("#extinguisher").jqxDateTimeInput({  value: data.maturity_dates[i].DateValue != null ? data.maturity_dates[i].DateValue : null  ,width: '100%', height: '25px', formatString: "dd/MM/yyyy"});
+			        break;
+			    case 4:
+					$("#MInsurance").jqxDateTimeInput({  value: data.maturity_dates[i].DateValue != null ? data.maturity_dates[i].DateValue : null  ,width: '100%', height: '25px', formatString: "dd/MM/yyyy"});
+			        break;
+
+			    case 5:
+					$("#TaquigraphControl").jqxDateTimeInput({  value: data.maturity_dates[i].DateValue != null ? data.maturity_dates[i].DateValue : null  ,width: '100%', height: '25px', formatString: "dd/MM/yyyy"});
+			        break;
+			    case 6:
+					$("#WarrantyEnd").jqxDateTimeInput({  value: data.maturity_dates[i].DateValue != null ? data.maturity_dates[i].DateValue : null  ,width: '100%', height: '25px', formatString: "dd/MM/yyyy"});
+			    	break;
+			    default:
+			    break;
+			} 
+		}
+
+
+
+
+
+		})  .fail(function() {
+        alert( "error" );
+    });
+                
+  
+	
+	
+
 })

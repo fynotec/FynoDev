@@ -17,16 +17,20 @@ td {
     padding-bottom: .9em;
 }
 </style>
-     
+    
 
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">Engin / Véhicule</h3>
         </div>
         <div class="panel-body">
-            <form id="vehicleform" method="POST" action="{{action('SmController@store')}}">
+            
+
+             
+            <form id= "vehicleformEdit" method="POST" action="" accept-charset="UTF-8 action="{{action('SmController@update')}}">
+            <input name="_method" type="hidden" value="PATCH">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <table class="col-md-12" style="border-spacing: 10px 50px;margin-bottom:20px; ">
+             <table class="col-md-12" style="border-spacing: 10px 50px;margin-bottom:20px; ">
         <fieldset>
         <legend style="text-decoration:underline;">Informations Générales</legend>
           
@@ -288,27 +292,11 @@ td {
     <script type="text/javascript" src="{{asset('js/jqwidgets/jqxdropdownbutton.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/jqwidgets/jqxdatetimeinput.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/jqwidgets/jqxcalendar.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/app/VehiculeAdd.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/app/vehiculeEdit.js')}}"></script>
+    
 
      
 
-	
-
-
-
-
-
-
-
-
-
-
-    <script type="text/javascript">
-
-
-   
-   
-    </script>
 	
 
 @stop
